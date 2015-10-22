@@ -1,3 +1,3 @@
-# Numerical Method Module ver 1.0 (python)
+# Numerical Method Module Ver 0.1 (python)
 
 ## Neville's Method
