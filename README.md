@@ -1,10 +1,13 @@
+
 # Numerical Method Module Ver 0.1 (python)
 
-## Neville's Method
+$$x=y$$
 
-\documentclass{article}
+$y_n = x_n - x_{n_1}$
 
-\begin{document}
+$$y=x^2 - 2x^{x-1}$$
 
 
-\end{document}
+```python
+
+```
