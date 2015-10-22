@@ -1,4 +1,4 @@
-# Numerical Method (Analysis) Library - pynumerical.py
+# Numerical Method (Analysis) Module - pynumerical.py
 # Date: Oct/21/2015, Wed - 
 # Version: ver 1.0
 # Author: Minwoo Bae
