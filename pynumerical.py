@@ -1,7 +1,25 @@
-# Numerical Analysis Library - pynumerical.py
-# Date: Sep/29/2015
+# Numerical Method (Analysis) Library - pynumerical.py
+# Date: Oct/21/2015
 # Author: Minwoo Bae
 import math
+
+def absolute_value(p):
+        return math.fabs(p)
+
+def actual_error(p,a_p):
+        return p - a_p
+
+def absolute_error(p,a_p):
+        return math.fabs(p-a_p)
+
+def relative_error(p,a_p):
+        result = 0
+        if absolute_value(p) != 0:
+                result = absolute_error(p,a_p)/absolute_value(p)
+                return result
+        else:
+                print('error: absolute_value must not be equal to ',absolute_value(p))
+        
 
 def nevilles_method(x0, x, y):
 
