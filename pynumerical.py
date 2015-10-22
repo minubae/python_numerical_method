@@ -36,13 +36,26 @@ def relative_error(p,a_p):
 ##########################################################################################
 
 ############################ Bisection Method (Binary Search) ############################
-def bisection_method(f_x, a_n, b_n, num):
+# The Bisection, or Binary-search, Method is based on the Intermediate Value Theorem.
+# Suppose f is a continuous function defined on the interval [a,b], with f(a) and f(b)
+# of opposite sign. THe Intermediate Value Theorem implies that a number p exists in (a,b)
+# with f(p) = 0. Although the procedure will work when there is more than one root in the
+# interval (a,b), we assume for simplicity that the root in this interval is unique.
+# The method calls for a repeated halving (or bisecting) of subintervals of [a,b] and,
+# at each step, locating the half containing p.
+# To begin, set a1 = a and b1 = b and let p1 be the midpoint of [a,b]; that is,
+# p1 = a1 + (b1-a1)/2 = (a1+b1)/2.
+# If f(p1) = 0, then p = p1, and we are done
+# if f(p1) != 0, then f(p1) has the same sign as either f(a1) or f(b1).
+# --- if f(p1) and f(a1) have the same sign, p is an element of (p1,b1). Set a2=p1 and b2=b1.
+# --- if f(p1) and f(a1) have opposite sign, p is an element of (a1,p1). Set a2=p1 and b2=p1.
+def bisection_method(fx, a_n, b_n, num):
 
         i = 0
         pivot = 0
         
-        def isNegative(f_x, a_n, b_n):
-                if f_x(a_n) * f_x(b_n) < 0: 
+        def isNegative(fx, a_n, b_n):
+                if fx(a_n) * fx(b_n) < 0: 
                         return True
                 else: 
                         return False
@@ -50,10 +63,10 @@ def bisection_method(f_x, a_n, b_n, num):
         def findPivot(a_n, b_n):
                 return (a_n+b_n)/2
         
-        if isNegative(f_x, a_n, b_n):
+        if isNegative(fx, a_n, b_n):
                 for i in range(num):
                         pivot = findPivot(a_n, b_n)
-                        if f_x(pivot) > 0 and f_x(b_n) < 0:
+                        if fx(pivot) > 0 and fx(b_n) < 0:
                                 a_n = pivot
                         else:
                                 b_n = pivot
@@ -61,6 +74,18 @@ def bisection_method(f_x, a_n, b_n, num):
         else:
                 print('Please reset up the right interval.')
 
+############################ Fixed-Point Iteration ############################               
+def fixed_point(fx, p, num):
+	i = 1
+	p_n = p
+	fx(p_n)
+	while i < num: 
+		print('P_'+str(i)+': '+str(fx(p_n)))
+		p_n = fx(p_n)
+		i+=1
+	return p_n
+
+############################ Neville's Method ############################
 def nevilles_method(x0, x, y):
 
 	n = len(x)
