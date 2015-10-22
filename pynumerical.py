@@ -1,8 +1,22 @@
 # Numerical Method (Analysis) Library - pynumerical.py
-# Date: Oct/21/2015
+# Date: Oct/21/2015, Wed - 
+# Version: ver 1.0
 # Author: Minwoo Bae
+# Contact: minubae.nyc@gmail.com
+
 import math
 
+#########################################################################################
+########################  A Function for the purpose of testing #########################
+def fx(x):
+	return 2**x - 3
+#########################################################################################
+
+#########################################################################################
+# Suppose that a_p is an approximation to p.
+# The actual error is p-a_p,
+# the abosulte error is |p-a_p|,
+# and the relative error is |p-a_p|/|p|,provided that p != 0.
 def absolute_value(p):
         return math.fabs(p)
 
@@ -19,9 +33,14 @@ def relative_error(p,a_p):
                 return result
         else:
                 print('error: absolute_value must not be equal to ',absolute_value(p))
-        	
+##########################################################################################
+
+############################ Bisection Method (Binary Search) ############################
 def bisection_method(f_x, a_n, b_n, num):
 
+        i = 0
+        pivot = 0
+        
         def isNegative(f_x, a_n, b_n):
                 if f_x(a_n) * f_x(b_n) < 0: 
                         return True
@@ -31,25 +50,16 @@ def bisection_method(f_x, a_n, b_n, num):
         def findPivot(a_n, b_n):
                 return (a_n+b_n)/2
         
-	i = 0
-	pivot = 0
-	if isNegative(a_n, b_n):
-		while i < num:
-			pivot = findPivot(a_n, b_n)
-			if f_x(pivot) > 0 and f_x(b_n) < 0:
-				a_n = pivot
-				print('Pivot (=>a) ['+str(i)+'] = '+str(pivot))
-				print('F(Pn) = '+str(f_x(pivot))) 
-				print('')
-			else:
-				b_n = pivot
-				print('Pivot (=>b) ['+str(i)+'] = '+str(pivot))
-				print('F(Pn) = '+str(f_x(pivot)))
-				print('')
-			i += 1
-	else: 
-		print('Please reset up the right interval.')
-	return pivot
+        if isNegative(f_x, a_n, b_n):
+                for i in range(num):
+                        pivot = findPivot(a_n, b_n)
+                        if f_x(pivot) > 0 and f_x(b_n) < 0:
+                                a_n = pivot
+                        else:
+                                b_n = pivot
+                return pivot
+        else:
+                print('Please reset up the right interval.')
 
 def nevilles_method(x0, x, y):
 
