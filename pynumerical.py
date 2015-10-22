@@ -19,7 +19,37 @@ def relative_error(p,a_p):
                 return result
         else:
                 print('error: absolute_value must not be equal to ',absolute_value(p))
+        	
+def bisection_method(f_x, a_n, b_n, num):
+
+        def isNegative(f_x, a_n, b_n):
+                if f_x(a_n) * f_x(b_n) < 0: 
+                        return True
+                else: 
+                        return False
         
+        def findPivot(a_n, b_n):
+                return (a_n+b_n)/2
+        
+	i = 0
+	pivot = 0
+	if isNegative(a_n, b_n):
+		while i < num:
+			pivot = findPivot(a_n, b_n)
+			if f_x(pivot) > 0 and f_x(b_n) < 0:
+				a_n = pivot
+				print('Pivot (=>a) ['+str(i)+'] = '+str(pivot))
+				print('F(Pn) = '+str(f_x(pivot))) 
+				print('')
+			else:
+				b_n = pivot
+				print('Pivot (=>b) ['+str(i)+'] = '+str(pivot))
+				print('F(Pn) = '+str(f_x(pivot)))
+				print('')
+			i += 1
+	else: 
+		print('Please reset up the right interval.')
+	return pivot
 
 def nevilles_method(x0, x, y):
 
