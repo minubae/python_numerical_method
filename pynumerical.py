@@ -153,8 +153,9 @@ def neville_method(x0, y, fx):
         return Q
 
 ############################ Newton's Divided-Difference Formula ############################
-def divided_differences(x0, x, fx):
-        
+def divided_differences(x, fx):
+        # x = [1.0, 1.3, 1.6, 1.9, 2.2]
+        # fx = [0.7651977, 0.6200860, 0.4554022, 0.2818186, 0.1103623]
         n = len(x)
         F = [ [ 0 for i in range(n) ] for j in range(n) ]
         
@@ -168,42 +169,28 @@ def divided_differences(x0, x, fx):
         return F
 
 ############################ Hermote Interpolation ##############################
-def hermite_interpolate():
-        x = [1.3, 1.6, 1.9]
-        y = [0.6200860, 0.4554022, 0.2818186]
-        yp = [-0.5220232, -0.5698959, -0.5811571]
-
+def hermite_interpolate(x, fx, fp):
+        #x = [1.3, 1.6, 1.9]
+        #fx = [0.6200860, 0.4554022, 0.2818186]
+        #fp = [-0.5220232, -0.5698959, -0.5811571]
+        
         n = len(x)
-        z = []*(2*n)
+        z = [0 for i in range(2*n)]
+        Q = [ [ 0 for i in range(2*n) ] for j in range(2*n) ]
+        #z = [0]*(2*n) #Q = [[None]*(2*n)]*(2*n)
 
         for i in range(n):
                 z[2*i] = x[i]
-        
-        return z
+                z[2*i+1] = x[i]
+                Q[2*i][0] = fx[i]
+                Q[2*i+1][0] = fx[i]
+                Q[2*i+1][1] = fp[i]
+                if i != 0:
+                        Q[2*i][1] = (Q[2*i][0] - Q[2*i-1][0]) / (z[2*i] - z[2*i-1])
 
-
-
-# function H = hermite (x, y, yp)
-
-# n = length(x);
-# z = zeros(1, 2*n);
-# H = zeros(2*n, 2*n);
-
-# for i=1:n
-#    z(2*i) = x(i);
-#    z(2*i+1) = x(i);
-#    H(2*i,1) = y(i);
-#    H(2*i+1,1) = y(i);
-#    H(2*i+1,2) = yp(i);
-#    if i ~= 1
-#        H(2*i,2) = (H(2*i,1) - H(2*i-1,1))/(z(2*i)-z(2*i-1));
-#    end;
-#end;
-
-#for i=3:2*n
-#    for j=3:i
-#        H(i+1,j) = (H(i+1,j-1)-H(i,j-1))/(z(i+1)-z((i+2)-j));
-#    end;
-#end;
-
+        for i in range(2, 2*n):
+                for j in range(2, i+1):
+                        Q[i][j] = (Q[i][j-1] - Q[i-1][j-1]) / (z[i] - z[i-j])
+                        
+        return Q
 
