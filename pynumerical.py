@@ -86,23 +86,40 @@ def fixed_point(fx, p, num):
 	return p_n
 
 ############################ Neville's Method ############################
-def nevilles_method(x0, x, y):
+def neville_method(): # x0, y, fx
+        x0 = 1.5
+        x = [1.0, 1.3, 1.6, 1.9, 2.2]
+        fx = [0.7651977, 0.6200860, 0.4554022, 0.2818186, 0.1103623]
+        n = len(x)
+        
+        Q = [[0 for i in range(n)] for j in range(n)]
+        for i in range(n):
+                Q[i][0] = fx[i]
+        for i in range(1,n):
+                for j in range(1, i+1):
+                        Q[i][j] = ((x0-x[i-j])*Q[i][j-1] - (x0 -x[i])*Q[i-1][j-1]) / (x[i] - x[i-j])
 
-	n = len(x)
+        print("Result of Neville's Method: \n")
+        for i in range(n):
+                for j in range(n):
+                        print("%.7f" %Q[i][j])
+                print("\n")
 
-	# Create and initiate an n x n multidimentional array: 
-	q = [ [ 0 for i in range(n) ] for j in range(n) ]
+        return Q
 
-	# Set y[i] value into q[i][0]:
-	for i in range(n):
-		q[i][0] = y[i]
-	
-	for i in range(1, n):
-		for j in range(1, i):
-			q[i][j] = ((x0 - x[i - j])*(q[i][j - 1]) - (x0 - x[i])*(q[i - 1][j - 1]))/(x[i] - x[i - j])
+############################ Newton's Divided-Difference Formula ############################
+def divided_differences(): # x, fx
+        x = [1.0, 1.3, 1.6, 1.9, 2.2]
+        fx = [0.7651977, 0.6200860, 0.4554022, 0.2818186, 0.1103623]
+        n = len(x)
+        F = [ [ 0 for i in range(n) ] for j in range(n) ]
+        
+        for i in range(n):
+                F[i][0] = fx[i]
+        
+        for i in range(1, n):
+                for j in range(1, i+1):
+                        F[i][j] = (F[i][j-1] - F[i-1][j-1]) / (x[i] - x[i-j])
+        return F
 
-	print("Result of Neville's Method:\n");
-	for i in range(n):
-		for j in range(n):
-			print("%.4f" %q[i][j])
-		print("\n")
+############################ Hermite Interpolation ############################
