@@ -73,8 +73,54 @@ def bisection_method(fx, a_n, b_n, num):
                 return pivot
         else:
                 print('Please reset up the right interval.')
+                
+################################### Newton's Method ##################################
+def newthon_method(p_0, tol, num):
+	i = 0
+	while i < num:
+		p = p_0 - f(p_0)/fPrime(p_0)
+		if math.fabs(p-p_0) < tol:
+			return [p, i]
+			break
+		i+=1
+		p_0 = p
 
-############################ Fixed-Point Iteration ############################               
+	print('The method failed after N_0 interations, N_0 = '+str(num))
+
+################################### Secant Method ##################################
+def secant_method(p_0, p_1, tol, num):
+	i = 2
+	while i <= num:
+		p = p_1 - (f(p_1)*(p_1 - p_0))/((f(p_1) - f(p_0)))
+		if math.fabs(p - p_1) < tol:
+			return [p, i]
+			break
+		i+=1
+		p_0 = p_1
+		p_1 = p
+
+	print('The method failed after N_0 iterations, N_0 = '+str(num))
+
+################################### The Method of False Postion ##################################
+def falsePosition(p_0, p_1, tol, num):
+	i = 2
+	q_0 = f(p_0)
+	q_1 = f(p_1)
+	while i <= num:
+		p = p_1 - q_1*(p_1-p_0)/(q_1 - q_0)
+		if math.fabs(p - p_1) < tol:
+			return [p, i]
+			break
+		i+=1
+		q = f(p)
+		if q*q_1 < 0:
+			p_0 = p_1
+			q_0 = q_1
+		p_1 = p
+		q_1 = q
+	print('The method failed after N_0 iterations, N_0 = '+str(num))
+	
+################################### Fixed-Point Iteration ##################################               
 def fixed_point(fx, p, num):
 	i = 1
 	p_n = p
@@ -85,7 +131,7 @@ def fixed_point(fx, p, num):
 		i+=1
 	return p_n
 
-############################ Neville's Method ############################
+##################################### Neville's Method ######################################
 def neville_method(x0, y, fx):
 
         n = len(x)        
@@ -107,9 +153,8 @@ def neville_method(x0, y, fx):
         return Q
 
 ############################ Newton's Divided-Difference Formula ############################
-def divided_differences(): # x, fx
-        x = [1.0, 1.3, 1.6, 1.9, 2.2]
-        fx = [0.7651977, 0.6200860, 0.4554022, 0.2818186, 0.1103623]
+def divided_differences(x0, x, fx):
+        
         n = len(x)
         F = [ [ 0 for i in range(n) ] for j in range(n) ]
         
@@ -119,10 +164,46 @@ def divided_differences(): # x, fx
         for i in range(1, n):
                 for j in range(1, i+1):
                         F[i][j] = (F[i][j-1] - F[i-1][j-1]) / (x[i] - x[i-j])
+                        
         return F
 
+############################ Hermote Interpolation ##############################
+def hermite_interpolate():
+        x = [1.3, 1.6, 1.9]
+        y = [0.6200860, 0.4554022, 0.2818186]
+        yp = [-0.5220232, -0.5698959, -0.5811571]
+
+        n = len(x)
+        z = []*(2*n)
+
+        for i in range(n):
+                z[2*i] = x[i]
+        
+        return z
 
 
 
+# function H = hermite (x, y, yp)
+
+# n = length(x);
+# z = zeros(1, 2*n);
+# H = zeros(2*n, 2*n);
+
+# for i=1:n
+#    z(2*i) = x(i);
+#    z(2*i+1) = x(i);
+#    H(2*i,1) = y(i);
+#    H(2*i+1,1) = y(i);
+#    H(2*i+1,2) = yp(i);
+#    if i ~= 1
+#        H(2*i,2) = (H(2*i,1) - H(2*i-1,1))/(z(2*i)-z(2*i-1));
+#    end;
+#end;
+
+#for i=3:2*n
+#    for j=3:i
+#        H(i+1,j) = (H(i+1,j-1)-H(i,j-1))/(z(i+1)-z((i+2)-j));
+#    end;
+#end;
 
 
