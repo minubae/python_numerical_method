@@ -8,8 +8,9 @@ import math
 
 #########################################################################################
 ########################  A Function for the purpose of testing #########################
-def fx(x):
-	return 2**x - 3
+
+fx = lambda x: 2**x - 3
+
 #########################################################################################
 
 #########################################################################################
@@ -60,8 +61,7 @@ def bisection_method(fx, a_n, b_n, num):
                 else: 
                         return False
         
-        def findPivot(a_n, b_n):
-                return (a_n+b_n)/2
+        findPivot = lambda a_n, b_n: (a_n+b_n)/2
         
         if isNegative(fx, a_n, b_n):
                 for i in range(num):
@@ -86,15 +86,14 @@ def fixed_point(fx, p, num):
 	return p_n
 
 ############################ Neville's Method ############################
-def neville_method(): # x0, y, fx
-        x0 = 1.5
-        x = [1.0, 1.3, 1.6, 1.9, 2.2]
-        fx = [0.7651977, 0.6200860, 0.4554022, 0.2818186, 0.1103623]
-        n = len(x)
-        
+def neville_method(x0, y, fx):
+
+        n = len(x)        
         Q = [[0 for i in range(n)] for j in range(n)]
+
         for i in range(n):
                 Q[i][0] = fx[i]
+                
         for i in range(1,n):
                 for j in range(1, i+1):
                         Q[i][j] = ((x0-x[i-j])*Q[i][j-1] - (x0 -x[i])*Q[i-1][j-1]) / (x[i] - x[i-j])
@@ -122,4 +121,8 @@ def divided_differences(): # x, fx
                         F[i][j] = (F[i][j-1] - F[i-1][j-1]) / (x[i] - x[i-j])
         return F
 
-############################ Hermite Interpolation ############################
+
+
+
+
+
