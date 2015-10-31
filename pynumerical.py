@@ -8,7 +8,6 @@ import math
 from sympy import *
 #######################################################################################
 ########################  A Function for the purpose of testing #########################
-x, y = symbols('x y')
 fx = lambda x: 2**x - 3
 fx2 = lambda x:  x**3 + 4*x**2 - 10
 fx3 = lambda t,y: y/t - (y/t)**2  # --> Differential Equation; for testing of this Euler's method.
@@ -128,22 +127,21 @@ def fixed_point(p0, g, tol, N):
 # INPUT: Initial approximation p0; tolerance TOL; maximum number of iterations N.
 # OUTPUT: Approximation solution p or message of failure.
 
-def f_prime(f, x):
-        x = symbols('x')
-        sol = diff(f(x),x)
-        return sol
+x = symbols('x')
+
+def f(x):
+        return cos(x)-x
 
 def newton_method(p0, f, tol, N):
         i = 1
-        x = symbols('x')
         try:
                 while i <= N:
-                        #p = p0 - f(p0)/diff(f(p0),x)
+                        p = p0 - f(p0)/diff(f(p0),x)
 
-                        #if math.fabs(p-p0) < tol:
-                        #        return p; break
+                        if math.fabs(p-p0) < tol:
+                                return p; break
                         i+=1
-                        #p0 = p
+                        p0 = p
         except:
                 return 'The procedure was unsuccessful'
 
