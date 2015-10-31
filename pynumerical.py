@@ -179,6 +179,8 @@ def secant_method(p0,p1,f,tol,N):
 # The Method of False Position (also called Regula Falsi) generates approximations in the same manner as the Secant
 # method, but it includes a test to ensure that the root is always bracketed between successive iterations.
 # P_n = P_n-1 - (f(P_n-1)(P_n-1 - P_n-2)) / (f(P_n-1) - f(P_n-2))
+# INPUT: Initial approximation p0, p1; tolerance TOL; maximum number of iterations N.
+# OUTPUT: Approximate solution p or message of failure.
 def false_position(p0, p1, f, tol, N):
 
         i = 2
