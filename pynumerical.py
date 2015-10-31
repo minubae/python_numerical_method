@@ -194,3 +194,9 @@ def hermite_interpolation(x, fx, fp):
                         
         return Q
 
+############################  Euler's Method ##############################
+def euler_method(f, a, b, N, y0):
+    return 
+
+
+    
