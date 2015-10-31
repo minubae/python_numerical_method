@@ -102,7 +102,7 @@ def secant_method(p_0, p_1, tol, num):
 	print('The method failed after N_0 iterations, N_0 = '+str(num))
 
 ################################### The Method of False Postion ##################################
-def falsePosition(p_0, p_1, tol, num):
+def false_position(p_0, p_1, tol, num):
 	i = 2
 	q_0 = f(p_0)
 	q_1 = f(p_1)
