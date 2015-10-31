@@ -126,16 +126,15 @@ def fixed_point(p0, g, tol, N):
 # P_n = P_n-1 - f(P_n-1)/f'(P_n-1), for n >= 1
 # INPUT: Initial approximation p0; tolerance TOL; maximum number of iterations N.
 # OUTPUT: Approximation solution p or message of failure.
-
 x = symbols('x')
-
-def f(x):
-        return cos(x)-x
+f = lambda x: cos(x)-x
 
 def newton_method(p0, f, tol, N):
         i = 1
         try:
                 while i <= N:
+                        # TODO:
+                        # diff(f(p0), x) needs to be fixed.
                         p = p0 - f(p0)/diff(f(p0),x)
 
                         if math.fabs(p-p0) < tol:
