@@ -5,14 +5,14 @@
 # Contact: minubae.nyc@gmail.com
 
 import math
-
+from sympy import *
 #######################################################################################
 ########################  A Function for the purpose of testing #########################
-
+x, y = symbols('x y')
 fx = lambda x: 2**x - 3
 fx2 = lambda x:  x**3 + 4*x**2 - 10
 fx3 = lambda t,y: y/t - (y/t)**2  # --> Differential Equation; for testing of this Euler's method.
-
+fx4 = lambda x: cos(x)-x
 #########################################################################################
 
 #########################################################################################
@@ -120,28 +120,32 @@ def fixed_point(p0, g, tol, N):
     except:
         return 'The procedure was unsuccessful'
 
-# def fixed_point(fx, p, num):
-#     i = 1
-#     p_n = p
-#     fx(p_n)
-#     while i < num: 
-#         print('P_'+str(i)+': '+str(fx(p_n)))
-#         p_n = fx(p_n)
-#         i+=1
-#     return p_n
-
-
 ################################### Newton's Method ##################################
-def newthon_method(p_0, tol, num):
-	i = 0
-	while i < num:
-		p = p_0 - f(p_0)/fPrime(p_0)
-		if math.fabs(p-p_0) < tol:
-			return [p, i]; break
-		i+=1
-		p_0 = p
+# Newton's (or the Newton-Raphson) method is one of the most powerful and well-known numerical methods
+# for solving a root-finding problem.
+# Newton's method is a functional iteration technique with p_n, for which
+# P_n = P_n-1 - f(P_n-1)/f'(P_n-1), for n >= 1
+# INPUT: Initial approximation p0; tolerance TOL; maximum number of iterations N.
+# OUTPUT: Approximation solution p or message of failure.
 
-	print('The method failed after N_0 interations, N_0 = '+str(num))
+def f_prime(f, x):
+        x = symbols('x')
+        sol = diff(f(x),x)
+        return sol
+
+def newton_method(p0, f, tol, N):
+        i = 1
+        x = symbols('x')
+        try:
+                while i <= N:
+                        #p = p0 - f(p0)/diff(f(p0),x)
+
+                        #if math.fabs(p-p0) < tol:
+                        #        return p; break
+                        i+=1
+                        #p0 = p
+        except:
+                return 'The procedure was unsuccessful'
 
 ################################### Secant Method ##################################
 def secant_method(p_0, p_1, tol, num):
