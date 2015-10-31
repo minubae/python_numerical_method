@@ -6,7 +6,7 @@
 
 import math
 
-#########################################################################################
+#######################################################################################
 ########################  A Function for the purpose of testing #########################
 
 fx = lambda x: 2**x - 3
@@ -50,34 +50,50 @@ def relative_error(p, a_p):
 # if f(p1) != 0, then f(p1) has the same sign as either f(a1) or f(b1).
 # --- if f(p1) and f(a1) have the same sign, p is an element of (p1,b1). Set a2=p1 and b2=b1.
 # --- if f(p1) and f(a1) have opposite sign, p is an element of (a1,p1). Set a2=p1 and b2=p1.
-# INPUT: Function fx; endpoints a_n, b_n; tolerance TOL; maximum number of iterations N0
+# INPUT: Function fx; endpoints a, b; tolerance TOL; maximum number of iterations N0
 # OUTPUT: Approximate solution p or message of failure.
 
 fx2 = lambda x:  x**3 + 4*x**2 - 10
 
-def bisection_method(fx, a_n, b_n, num):
+def bisection_method(fx, a, b, tol, N):
+        i = 1
+        FA = fx(a)
 
-        i = 0
-        pivot = 0
+        try:
+            while i <= N:
+
+                p = a + (b-a)/2
+                FP = fx(p)
+
+                print(i,': ', 'p:', p, '; f(p):', FP)
+                
+                if FP == 0 or (b-a)/2 < tol:
+                    return p; break
+                i+=1
+                
+                if FA*FP > 0:
+                        a = p
+                else:
+                        b = p
+        except:
+            return 'The procedure was unsuccessful.'
+                
+# def bisection_method(fx, a, b, num):
+#         i = 0
+#         pivot = 0
+#         isNegative = lambda fx, a, b: True if fx(a) * fx(b) < 0 else False
+#         findPivot = lambda a, b: (a+b)/2
         
-        def isNegative(fx, a_n, b_n):
-                if fx(a_n) * fx(b_n) < 0: 
-                        return True
-                else: 
-                        return False
-        
-        findPivot = lambda a_n, b_n: (a_n+b_n)/2
-        
-        if isNegative(fx, a_n, b_n):
-                for i in range(num):
-                        pivot = findPivot(a_n, b_n)
-                        if fx(pivot) > 0 and fx(b_n) < 0:
-                                a_n = pivot
-                        else:
-                                b_n = pivot
-                return pivot
-        else:
-                print('Please reset up the right interval.')
+#         if isNegative(fx, a, b):
+#                 for i in range(num):
+#                         pivot = findPivot(a, b)
+#                         if fx(pivot) > 0 and fx(b) < 0:
+#                                 a = pivot
+#                         else:
+#                                 b = pivot
+#                 return pivot
+#         else:
+#                 print('Please reset up the right interval.')
                 
 ################################### Newton's Method ##################################
 def newthon_method(p_0, tol, num):
