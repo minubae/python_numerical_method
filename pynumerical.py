@@ -10,6 +10,8 @@ import math
 ########################  A Function for the purpose of testing #########################
 
 fx = lambda x: 2**x - 3
+fx2 = lambda x:  x**3 + 4*x**2 - 10
+fx3 = lambda t,y: y/t - (y/t)**2  # --> Differential Equation; for testing of this Euler's method.
 
 #########################################################################################
 
@@ -52,9 +54,6 @@ def relative_error(p, a_p):
 # --- if f(p1) and f(a1) have opposite sign, p is an element of (a1,p1). Set a2=p1 and b2=p1.
 # INPUT: Function fx; endpoints a, b; tolerance TOL; maximum number of iterations N0
 # OUTPUT: Approximate solution p or message of failure.
-
-fx2 = lambda x:  x**3 + 4*x**2 - 10
-
 def bisection_method(fx, a, b, tol, N):
         i = 1
         FA = fx(a)
@@ -94,15 +93,51 @@ def bisection_method(fx, a, b, tol, N):
 #                 return pivot
 #         else:
 #                 print('Please reset up the right interval.')
-                
+
+################################### Fixed-Point Iteration ##################################
+# Fixed-Point Theorem:
+# Let g is continuous on [a,b] be such that g(x) exists on [a,b], for all x in [a,b].
+# Suppose, in addition, that g' exists on (a,b) and that a constant 0 < k < 1 exists with
+# |g'(x)| <= k, for all x in (a,b).
+# Then, for any number p0 in [a,b], the sequence defiend by p_n = g(p_n-1), n >= 1, 
+# converges to the unique fixed point p in [a,b].
+# INPUT: Initial approximation p0; tolerance TOL; maximum number of iteration N.
+# OUTPUT: Approximate solution p or message of failure.   
+def fixed_point(p0, g, tol, N):
+    i = 1
+    try:
+        while i <= N:
+            p = g(p0)
+
+            print('i:',i, 'p:',p)
+
+            if math.fabs(p-p0) < tol:
+                return p; break
+
+            i += 1
+            p0 = p
+
+    except:
+        return 'The procedure was unsuccessful'
+
+# def fixed_point(fx, p, num):
+#     i = 1
+#     p_n = p
+#     fx(p_n)
+#     while i < num: 
+#         print('P_'+str(i)+': '+str(fx(p_n)))
+#         p_n = fx(p_n)
+#         i+=1
+#     return p_n
+
+
 ################################### Newton's Method ##################################
 def newthon_method(p_0, tol, num):
 	i = 0
 	while i < num:
 		p = p_0 - f(p_0)/fPrime(p_0)
 		if math.fabs(p-p_0) < tol:
-			return [p, i]
-			break
+			return [p, i]; break
 		i+=1
 		p_0 = p
 
@@ -141,16 +176,7 @@ def false_position(p_0, p_1, tol, num):
 		q_1 = q
 	print('The method failed after N_0 iterations, N_0 = '+str(num))
 	
-################################### Fixed-Point Iteration ##################################               
-def fixed_point(fx, p, num):
-	i = 1
-	p_n = p
-	fx(p_n)
-	while i < num: 
-		print('P_'+str(i)+': '+str(fx(p_n)))
-		p_n = fx(p_n)
-		i+=1
-	return p_n
+
 
 ##################################### Neville's Method ######################################
 def neville_method(x0, y, fx):
@@ -224,9 +250,6 @@ def hermite_interpolation(x, fx, fp):
 # at (N+1) equally spaced numbers in the interval [a,b]:
 # INPUT: Differential equation f(t,y); endpoints a, b; integer N; initial condition y0.
 # OUTPUT: Approximation w to y at the (N+1) values of t.
-def f(t,y):
-    return y/t - (y/t)**2
-
 def euler_method(f, a, b, N, y0):
 
     h = (b-a)/N
