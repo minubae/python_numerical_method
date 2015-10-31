@@ -21,13 +21,13 @@ fx = lambda x: 2**x - 3
 def absolute_value(p):
         return math.fabs(p)
 
-def actual_error(p,a_p):
+def actual_error(p, a_p):
         return p - a_p
 
-def absolute_error(p,a_p):
+def absolute_error(p, a_p):
         return math.fabs(p-a_p)
 
-def relative_error(p,a_p):
+def relative_error(p, a_p):
         result = 0
         if absolute_value(p) != 0:
                 result = absolute_error(p,a_p)/absolute_value(p)
@@ -50,6 +50,11 @@ def relative_error(p,a_p):
 # if f(p1) != 0, then f(p1) has the same sign as either f(a1) or f(b1).
 # --- if f(p1) and f(a1) have the same sign, p is an element of (p1,b1). Set a2=p1 and b2=b1.
 # --- if f(p1) and f(a1) have opposite sign, p is an element of (a1,p1). Set a2=p1 and b2=p1.
+# INPUT: Function fx; endpoints a_n, b_n; tolerance TOL; maximum number of iterations N0
+# OUTPUT: Approximate solution p or message of failure.
+
+fx2 = lambda x:  x**3 + 4*x**2 - 10
+
 def bisection_method(fx, a_n, b_n, num):
 
         i = 0
