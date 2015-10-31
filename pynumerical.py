@@ -1,6 +1,6 @@
 # Numerical Method (Analysis) Module - pynumerical.py
 # Date: Oct/21/2015, Wed - 
-# Version: ver 1.0
+# Version: ver 0.1
 # Author: Minwoo Bae
 # Contact: minubae.nyc@gmail.com
 
@@ -127,7 +127,7 @@ def fixed_point(p0, g, tol, N):
 # INPUT: Initial approximation p0; tolerance TOL; maximum number of iterations N.
 # OUTPUT: Approximation solution p or message of failure.
 x = symbols('x')
-f = lambda x: cos(x)-x
+f = lambda x: math.cos(x)-x
 
 def newton_method(p0, f, tol, N):
         i = 1
@@ -145,39 +145,63 @@ def newton_method(p0, f, tol, N):
                 return 'The procedure was unsuccessful'
 
 ################################### Secant Method ##################################
-def secant_method(p_0, p_1, tol, num):
-	i = 2
-	while i <= num:
-		p = p_1 - (f(p_1)*(p_1 - p_0))/((f(p_1) - f(p_0)))
-		if math.fabs(p - p_1) < tol:
-			return [p, i]
-			break
-		i+=1
-		p_0 = p_1
-		p_1 = p
+# The Secant Method:
+# Newton's method is an extremly powerful technique, but it has a major weakness: the need to know
+# the value of the derivative of f at each approximation. Frequently, f'(x) is far more difficult and needs
+# more arithmetic operations to calculate than f(x).
+# P_n = P_n-1 - (f(P_n-1)(P_n-1 - P_n-2)) / (f(P_n-1) - f(P_n-2))
+# INPUT: Initial approximation p0, p1; tolerance TOL; maximum number of iterations N.
+# OUTPUT: Approximate solution p or message of failure.
+def secant_method(p0,p1,f,tol,N):
+        i = 2
+        q0 = f(p0)
+        q1 = f(p1)
+        
+        try:
+            while i <= N:
+                p = p1 - q1*(p1-p0) / (q1-q0)
+                print('i:',i, 'p:',p)
 
-	print('The method failed after N_0 iterations, N_0 = '+str(num))
+                if math.fabs(p-p1)< tol:
+                    return p; break
+                i+=1
+                        
+                p0 = p1
+                q0 = q1
+                p1 = p
+                q1 = f(p)
 
+        except:
+                return 'The procedure was unsuccessful'
+
+                        
 ################################### The Method of False Postion ##################################
-def false_position(p_0, p_1, tol, num):
-	i = 2
-	q_0 = f(p_0)
-	q_1 = f(p_1)
-	while i <= num:
-		p = p_1 - q_1*(p_1-p_0)/(q_1 - q_0)
-		if math.fabs(p - p_1) < tol:
-			return [p, i]
-			break
-		i+=1
-		q = f(p)
-		if q*q_1 < 0:
-			p_0 = p_1
-			q_0 = q_1
-		p_1 = p
-		q_1 = q
-	print('The method failed after N_0 iterations, N_0 = '+str(num))
-	
+# The Method of False Position (also called Regula Falsi) generates approximations in the same manner as the Secant
+# method, but it includes a test to ensure that the root is always bracketed between successive iterations.
+# P_n = P_n-1 - (f(P_n-1)(P_n-1 - P_n-2)) / (f(P_n-1) - f(P_n-2))
+def false_position(p0, p1, f, tol, N):
 
+        i = 2
+        q0 = f(p0)
+        q1 = f(p1)
+
+        try:
+                while i <= N:
+                        p = p1 - q1*(p1-p0)/(q1 - q0)
+                        print('i:',i, 'p:',p)
+                        
+                        if math.fabs(p - p1) < tol:
+                                return p; break
+                        i+=1
+                        q = f(p)
+
+                        if q*q1 < 0:
+                                p0 = p1
+                                q0 = q1
+                        p1 = p
+                        q1 = q
+        except:
+                return 'The procedure was unsuccessful'
 
 ##################################### Neville's Method ######################################
 def neville_method(x0, y, fx):
