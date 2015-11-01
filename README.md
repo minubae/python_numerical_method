@@ -1,6 +1,10 @@
 # Numerical Method Module Ver 0.1 (python)
-## The Bisection Method
 
-## The Fixed-Point Iteration Method
+## Root Finding Problem
+### The Bisection Method
 
-## The Newton's Method
+### The Fixed-Point Iteration Method
+
+### The Newton's Method
+
+## Interpolation Polynomial Problem
