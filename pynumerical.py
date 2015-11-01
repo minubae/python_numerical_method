@@ -6,15 +6,14 @@
 
 import math
 from sympy import *
-#######################################################################################
-########################  A Function for the purpose of testing #########################
+
+## A Function for the purpose of testing
 fx = lambda x: 2**x - 3
 fx2 = lambda x:  x**3 + 4*x**2 - 10
 fx3 = lambda t,y: y/t - (y/t)**2  # --> Differential Equation; for testing of this Euler's method.
 fx4 = lambda x: cos(x)-x
-#########################################################################################
 
-#########################################################################################
+## Decimal Machine Numbers: The actual error; the absolute error; the relative error
 # Suppose that a_p is an approximation to p.
 # The actual error is p-a_p,
 # the abosulte error is |p-a_p|,
@@ -35,9 +34,8 @@ def relative_error(p, a_p):
                 return result
         else:
                 print('error: absolute_value must not be equal to ',absolute_value(p))
-##########################################################################################
 
-############################ Bisection Method (Binary Search) ############################
+## The Bisection Method (Binary Search)
 # The Bisection, or Binary-search, Method is based on the Intermediate Value Theorem.
 # Suppose f is a continuous function defined on the interval [a,b], with f(a) and f(b)
 # of opposite sign. THe Intermediate Value Theorem implies that a number p exists in (a,b)
@@ -93,8 +91,7 @@ def bisection_method(fx, a, b, tol, N):
 #         else:
 #                 print('Please reset up the right interval.')
 
-################################### Fixed-Point Iteration ##################################
-# Fixed-Point Theorem:
+## Fixed-Point Iteration Theorem
 # Let g is continuous on [a,b] be such that g(x) exists on [a,b], for all x in [a,b].
 # Suppose, in addition, that g' exists on (a,b) and that a constant 0 < k < 1 exists with
 # |g'(x)| <= k, for all x in (a,b).
@@ -119,9 +116,8 @@ def fixed_point(p0, g, tol, N):
     except:
         return 'The procedure was unsuccessful'
 
-################################### Newton's Method ##################################
-# Newton's (or the Newton-Raphson) method is one of the most powerful and well-known numerical methods
-# for solving a root-finding problem.
+## Newton's (or the Newton-Raphson)Method
+# Newton's (or the Newton-Raphson)Method is one of the most powerful and well-known numerical methods for solving a root-finding problem.
 # Newton's method is a functional iteration technique with p_n, for which
 # P_n = P_n-1 - f(P_n-1)/f'(P_n-1), for n >= 1
 # INPUT: Initial approximation p0; tolerance TOL; maximum number of iterations N.
@@ -144,8 +140,7 @@ def newton_method(p0, f, tol, N):
         except:
                 return 'The procedure was unsuccessful'
 
-################################### Secant Method ##################################
-# The Secant Method:
+## The Secant Method
 # Newton's method is an extremly powerful technique, but it has a major weakness: the need to know
 # the value of the derivative of f at each approximation. Frequently, f'(x) is far more difficult and needs
 # more arithmetic operations to calculate than f(x).
@@ -175,7 +170,7 @@ def secant_method(p0,p1,f,tol,N):
                 return 'The procedure was unsuccessful'
 
                         
-################################### The Method of False Postion ##################################
+## The Method of False Postion
 # The Method of False Position (also called Regula Falsi) generates approximations in the same manner as the Secant
 # method, but it includes a test to ensure that the root is always bracketed between successive iterations.
 # P_n = P_n-1 - (f(P_n-1)(P_n-1 - P_n-2)) / (f(P_n-1) - f(P_n-2))
@@ -205,7 +200,7 @@ def false_position(p0, p1, f, tol, N):
         except:
                 return 'The procedure was unsuccessful'
 
-##################################### Neville's Method ######################################
+## Neville's Method
 def neville_method(x0, y, fx):
 
         n = len(x)        
@@ -226,7 +221,7 @@ def neville_method(x0, y, fx):
 
         return Q
 
-############################ Newton's Divided-Difference Formula ############################
+## Newton's Divided-Difference Formula
 def divided_differences(x, fx):
         # x = [1.0, 1.3, 1.6, 1.9, 2.2]
         # fx = [0.7651977, 0.6200860, 0.4554022, 0.2818186, 0.1103623]
@@ -242,7 +237,7 @@ def divided_differences(x, fx):
                         
         return F
 
-############################ Hermote Interpolation ##############################
+## Hermote Interpolation
 def hermite_interpolation(x, fx, fp):
         #x = [1.3, 1.6, 1.9]
         #fx = [0.6200860, 0.4554022, 0.2818186]
@@ -270,7 +265,7 @@ def hermite_interpolation(x, fx, fp):
 
 
 
-################################  Euler's Method ###################################
+## Euler's Method
 # y(t_i+1) = y(t_i) +h*f(t_i, y(t_i)).
 # w0 = y0; w_i+1 = w_i + h*w(t_i, w_i), for each i = 0,1,...,N-1.
 # To approximate the solution of the initial-value problem, dy/dt = f(t,y), a <= t <= b, y(a)=w0
