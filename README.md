@@ -1,13 +1,14 @@
 # Numerical Method Module Ver 0.1 (python)
 
 1. Mathematical Preliminaries and Error Analysis
-### The Bisection Method
-
-### The Fixed-Point Iteration Method
-
-### The Newton's Method
 
 2. Solution of Equations in One Variable
+
+a) The Bisection Method
+
+b) The Fixed-Point Iteration
+
+c) The Newton's Method and Its Extensions
 
 3. Interpolation and Polynomial Approximation
 
