@@ -3,10 +3,15 @@
 1. Mathematical Preliminaries and Error Analysis
 
 2. Solution of Equations in One Variable
+
 - The Bisection Method
+
 - The Fixed-Point Iteration
+
 - The Newton's Method
+
 - The Secant Method
+
 - The Method of False Postion
 
 3. Interpolation and Polynomial Approximation
