@@ -4,11 +4,11 @@
 
 2. Solution of Equations in One Variable
 
-a) The Bisection Method
+- The Bisection Method
 
-b) The Fixed-Point Iteration
+- The Fixed-Point Iteration
 
-c) The Newton's Method and Its Extensions
+- The Newton's Method and Its Extensions
 
 3. Interpolation and Polynomial Approximation
 
