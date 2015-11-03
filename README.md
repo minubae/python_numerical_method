@@ -16,7 +16,31 @@
 
 3. Interpolation and Polynomial Approximation
 
+- Data Approximation and Neville's Method
+
+- Divided Differences
+
+- Hermite Interpolation
+
+- Natural Cubic Spline Interpolation
+
+- Clamped Cubic Spline
+
 4. Numerical Differentiation and Integration
+
+- Numerical Differentiation
+
+- Composite Simpson's Rule
+
+- Romberg Integration
+
+- Adaptive Quadrature Method
+
+- Simpson's Double Integral
+
+- Gaussian Double Integral
+
+- Gaussian Triple Integral
 
 5. Initial-Value Problems for Ordinary Differential Equations
 
