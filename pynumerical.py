@@ -258,6 +258,12 @@ def divided_differences(x, fx):
         return F
 
 ## Hermote Interpolation
+# To obtain the coefficients of the Hermite interpolating polynomial H(x) on the (n+1) distinct numbers x0,..,xn
+# for the function f :
+# INPUT: Numbers x0, x1, ... , xn; values f(x0),...,f(xn) and f'(x0),...,f'(xn).
+# OUTPUT: The numbers Q0,0, Q1,1,...,Q2n+1,2n+1 where
+# H(x) = Q0,0 + Q1,1(x-x0) + Q2,2(x-x0)^2 + Q3,3(x-x0)^2(x-x1) + Q4,4(x-x0)^2(x-x1)^2 + ...
+#          + Q2n+1,2n+1(x-x0)^2(x-x1)^2 ... (x-xn-1)^2(x-xn).
 def hermite_interpolation(x, fx, fp):
         #x = [1.3, 1.6, 1.9]
         #fx = [0.6200860, 0.4554022, 0.2818186]
