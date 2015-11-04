@@ -40,19 +40,19 @@
 
 - Romberg Integration (progress)
 
-- Adaptive Quadrature Method
+- Adaptive Quadrature Method (progress)
 
-- Simpson's Double Integral
+- Simpson's Double Integral (progress)
 
-- Gaussian Double Integral
+- Gaussian Double Integral (progress)
 
-- Gaussian Triple Integral
+- Gaussian Triple Integral (progress)
 
 ### 5. Initial-Value Problems for Ordinary Differential Equations
 
 - Euler's Method (o)
 
-- Runge Kutta Method (Order Four)
+- Runge Kutta Method (Order Four) 
 
 - Runge Kutta Fehlberg Method
 

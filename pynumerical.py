@@ -305,14 +305,52 @@ def numerical_differentiation(x, fx):
 # To approximate the integral I = integral from a to b f(x)dx:
 # INPUT: Endpoints a, b; even positive integer n.
 # OUTPUT: Approximation XI to I.
-def composite_simpsons():
+def composite_simpson_integral():
         return 1
 
 # Composite Trapezoidal Rule (Composite Numerical Integration)
 # To approximate the integral I = integral from a to b f(x)dx:
 # INPUT: Endpoints a, b; even positive integer n.
 # OUTPUT: Approximation XI to I.
-def composite_trapezoid():
+def composite_trapezoid_integral():
+        return 1
+
+# Romberg Integration
+# To approximate the integral I = integral from a to b f(x)dx, select an integer n > 0.
+# INPUT: Endpoints a, b; integer n.
+# OUTPUT: An array R (Compare R by rows; only teh last two rows are saved in storage).
+def romberg_integration():
+        return 1
+
+# Adaptive Quadrature
+# To approximate the integral I = integral from a to b f(x)dx to within a given tolerance:
+# INPUT: Endpoints a,b; tolerance TOL; limit N to number of levels.
+# OUTPUT: Approximation APP or message that N is exceeded.
+def adaptive_quadrature_integral():
+        return 1
+
+# Simpson's Double Integral
+# To approximate the integral I = integral from a to b integral from c(x) to d(x) f(x,y) dy dx:
+# INPUT: Endpoints a, b; even positive integers m,n.
+# OUTPUT: Approximation J to I.
+def simpson_double_integral():
+        return 1
+
+# Gaussian Double Integral
+# To approximate the integral I = integral from a to b integral from c(x) to d(x) f(x,y) dy dx:
+# INPUT: Endpoints a, b; even positive integers m,n.
+# (The roots ri,j and coefficients ci,j need to be available for i = max{m,n} and for 1 <= j <= i)
+# OUTPUT: Approximation J to I.
+def gaussian_double_integral():
+        return 1
+
+# Gaussian Triple Integral
+# To approximate
+# the integral I = integral from a to b integral from c(x) to d(x) integral from e(x) to f(x) f(x,y,z) dz dy dx:
+# INPUT: Endpoints a, b; even positive integers m,n.
+# (The roots ri,j and coefficients ci,j need to be available for i = max{m,n} and for 1 <= j <= i)
+# OUTPUT: Approximation J to I.
+def gaussian_triple_integral():
         return 1
 
 ## Euler's Method
