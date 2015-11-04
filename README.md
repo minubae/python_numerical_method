@@ -52,9 +52,9 @@
 
 - Euler's Method (o)
 
-- Runge Kutta Method (Order Four) 
+- Runge Kutta Method (Order Four) (progress)
 
-- Runge Kutta Fehlberg Method
+- Runge Kutta Fehlberg Method (progress)
 
 - Adams Fourth Order Predictor Corrector
 
