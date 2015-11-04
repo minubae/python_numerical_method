@@ -13,6 +13,8 @@ fx2 = lambda x:  x**3 + 4*x**2 - 10
 fx3 = lambda t,y: y/t - (y/t)**2  # --> Differential Equation; for testing of this Euler's method.
 fx4 = lambda x: cos(x)-x
 
+### 1. Mathematical Preliminaries and Error Analysis
+
 ## Decimal Machine Numbers: The actual error; the absolute error; the relative error
 # Suppose that a_p is an approximation to p.
 # The actual error is p-a_p,
@@ -35,6 +37,8 @@ def relative_error(p, a_p):
         else:
                 print('error: absolute_value must not be equal to ',absolute_value(p))
 
+### 2. Solution of Equations in One Variable
+                
 ## The Bisection Method (Binary Search)
 # The Bisection, or Binary-search, Method is based on the Intermediate Value Theorem.
 # Suppose f is a continuous function defined on the interval [a,b], with f(a) and f(b)
@@ -200,6 +204,8 @@ def false_position(p0, p1, f, tol, N):
         except:
                 return 'The procedure was unsuccessful'
 
+### 3. Interpolation and Polynomial Approximation
+        
 ## Neville's Iterated Interpolation
 # Theorem 3.5: Let f be defined at x0, x1,...,xk and let xj and xi be two distinct numbers in this set.
 # Then P(x) = (x-xj)P0,1,...,j-1,j+1,...,k(x) - (x-xi)P0,1,...,j-1,j+1,...,k(x) / (xi-xj)
@@ -289,6 +295,8 @@ def hermite_interpolation(x, fx, fp):
                         
         return Q
 
+### 4. Numerical Differentiation and Integration
+
 # Numerical Differentiation
 # INPUT: Numbers x0, x1, ... , xn; values f(x0),...,f(xn)
 # OUTPUT: values f'(x0),...,f'(xn)
@@ -353,23 +361,7 @@ def gaussian_double_integral():
 def gaussian_triple_integral():
         return 1
 
-# Runge-Kutta (Order Four)
-# To approximate the solution of the initial-value problem y'=f(t,y), a <= t <= b, y(a) = ⍺,
-# at (N+1) equally spaced numbers in the interval [a,b]:
-# INPUT: Endpoints a, b; integer N; initial condition ⍺.
-# OUTPUT: Approximation w to y at the (N+1) values of t.
-def runge_kutta():
-        return 1
-
-# Runge-Kutta-Fehlberg Method
-# To approximate the solution of the initial-value problem y'=f(t,y), a <= t <= b, y(a) = ⍺,
-# with local truncation error within a given tolerance:
-# INPUT: Endpoints a, b; integer N; initial condition ⍺; tolerance TOL; maximum step size hmax;
-# minimun step size hmin.
-# OUTPUT: t, w, h where w approximates y(t) and the step size h was used or a message that
-# teh minimum step size was exceeded.
-def runge_kutta_fehlberg():
-        return 1
+### 5. Initial-Value Problems for Ordinary Differential Equations
 
 ## Euler's Method
 # y(t_i+1) = y(t_i) +h*f(t_i, y(t_i)).
@@ -391,7 +383,25 @@ def euler_method(f, a, b, N, y0):
         
     return w
 
+# Runge-Kutta (Order Four)
+# To approximate the solution of the initial-value problem y'=f(t,y), a <= t <= b, y(a) = ⍺,
+# at (N+1) equally spaced numbers in the interval [a,b]:
+# INPUT: Endpoints a, b; integer N; initial condition ⍺.
+# OUTPUT: Approximation w to y at the (N+1) values of t.
+def runge_kutta():
+        return 1
 
+# Runge-Kutta-Fehlberg Method
+# To approximate the solution of the initial-value problem y'=f(t,y), a <= t <= b, y(a) = ⍺,
+# with local truncation error within a given tolerance:
+# INPUT: Endpoints a, b; integer N; initial condition ⍺; tolerance TOL; maximum step size hmax;
+# minimun step size hmin.
+# OUTPUT: t, w, h where w approximates y(t) and the step size h was used or a message that
+# teh minimum step size was exceeded.
+def runge_kutta_fehlberg():
+        return 1
+
+### 6. Direct Methods for Solving Linear Systems
 
 
 
