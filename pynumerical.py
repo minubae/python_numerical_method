@@ -353,6 +353,24 @@ def gaussian_double_integral():
 def gaussian_triple_integral():
         return 1
 
+# Runge-Kutta (Order Four)
+# To approximate the solution of the initial-value problem y'=f(t,y), a <= t <= b, y(a) = ⍺,
+# at (N+1) equally spaced numbers in the interval [a,b]:
+# INPUT: Endpoints a, b; integer N; initial condition ⍺.
+# OUTPUT: Approximation w to y at the (N+1) values of t.
+def runge_kutta():
+        return 1
+
+# Runge-Kutta-Fehlberg Method
+# To approximate the solution of the initial-value problem y'=f(t,y), a <= t <= b, y(a) = ⍺,
+# with local truncation error within a given tolerance:
+# INPUT: Endpoints a, b; integer N; initial condition ⍺; tolerance TOL; maximum step size hmax;
+# minimun step size hmin.
+# OUTPUT: t, w, h where w approximates y(t) and the step size h was used or a message that
+# teh minimum step size was exceeded.
+def runge_kutta_fehlberg():
+        return 1
+
 ## Euler's Method
 # y(t_i+1) = y(t_i) +h*f(t_i, y(t_i)).
 # w0 = y0; w_i+1 = w_i + h*w(t_i, w_i), for each i = 0,1,...,N-1.
