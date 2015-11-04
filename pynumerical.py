@@ -211,8 +211,7 @@ def false_position(p0, p1, f, tol, N):
 
 # To evaluate the interpolating polynomial P on the n+1 distinct numbers x0,...xn
 # at the number x for the function f
-# INPUT: Numbers x, x0, x1,...,xn; values f(x0), f(x1),...,f(xn)
-# as the first column Q0,0, Q1,0,...,Qn,0 of Q.
+# INPUT: Numbers x, x0, x1,...,xn; values f(x0), f(x1),...,f(xn) as the first column Q0,0, Q1,0,...,Qn,0 of Q.
 # OUTPUT: The table Q with P(x) = Qn,n.
 def neville_method(x0, y, fx):
 
@@ -235,6 +234,14 @@ def neville_method(x0, y, fx):
         return Q
 
 ## Newton's Divided-Difference Formula
+# Iterated interpolation was used in the previous section to generate successively higher-degree
+# polynomial approximations at a specific point. Divided-difference methods are used to successively
+# generate the polynomial themselves.
+# To obtain the divided-difference coefficients of the interpolatory polynomial P on the (n+1)
+# distinct numbers x0, x1, ... , xn for the function f:
+# INPUT: Numbers x0, x1, ... , xn; values f(x0), f(x1),...,f(xn) as F0,0, F1,0,...,Fn,0.
+# OUTPUT: The numbers F0,0, F1,1,...,Fn,n where
+# Pn(x) = F0,0 + Sum (Fi,i) from i=1 to n * Product(x-xj) from j=0 to i-1. (Fi,i is f[x0,x1,...,xi])
 def divided_differences(x, fx):
         # x = [1.0, 1.3, 1.6, 1.9, 2.2]
         # fx = [0.7651977, 0.6200860, 0.4554022, 0.2818186, 0.1103623]
