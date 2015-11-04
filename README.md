@@ -2,6 +2,14 @@
 
 ### 1. Mathematical Preliminaries and Error Analysis
 
+- Absolute Value (o)
+
+- Actual Error (o)
+
+- Absolute Error (o)
+
+- Relative Error (0)
+
 ### 2. Solution of Equations in One Variable
 
 - The Bisection Method (o)
