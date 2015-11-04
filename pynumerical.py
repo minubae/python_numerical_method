@@ -289,6 +289,18 @@ def hermite_interpolation(x, fx, fp):
                         
         return Q
 
+# Numerical Differentiation
+# INPUT: Numbers x0, x1, ... , xn; values f(x0),...,f(xn)
+# OUTPUT: values f'(x0),...,f'(xn)
+def numerical_differentiation(x, fx):
+        fx_prime = list()
+        #TODO
+        # Three-Point Formulas:
+        # Three-Point Endpoint Formula; Three-Point Midpoint Formula
+        # Five-Point Formulas:
+        # Five-Point Midpoint Formula; Five-Point Endpoint Formula
+        return fx_prime
+
 
 
 ## Euler's Method
