@@ -22,17 +22,15 @@
 
 - Hermite Interpolation (o)
 
-- Natural Cubic Spline Interpolation
-
-- Clamped Cubic Spline
-
 ### 4. Numerical Differentiation and Integration
 
-- Numerical Differentiation
+- Numerical Differentiation (progress)
 
-- Composite Simpson's Rule
+- Composite Simpson's Rule (progress)
 
-- Romberg Integration
+- Composite Trapezoidal Rule (progress)
+
+- Romberg Integration (progress)
 
 - Adaptive Quadrature Method
 

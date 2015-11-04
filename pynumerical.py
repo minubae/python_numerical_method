@@ -301,7 +301,19 @@ def numerical_differentiation(x, fx):
         # Five-Point Midpoint Formula; Five-Point Endpoint Formula
         return fx_prime
 
+# Composite Simpson's Rule (Composite Numerical Integration)
+# To approximate the integral I = integral from a to b f(x)dx:
+# INPUT: Endpoints a, b; even positive integer n.
+# OUTPUT: Approximation XI to I.
+def composite_simpsons():
+        return 1
 
+# Composite Trapezoidal Rule (Composite Numerical Integration)
+# To approximate the integral I = integral from a to b f(x)dx:
+# INPUT: Endpoints a, b; even positive integer n.
+# OUTPUT: Approximation XI to I.
+def composite_trapezoid():
+        return 1
 
 ## Euler's Method
 # y(t_i+1) = y(t_i) +h*f(t_i, y(t_i)).
