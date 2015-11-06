@@ -314,11 +314,9 @@ def numerical_differentiation(x, fx):
 # INPUT: Endpoints a, b; even positive integer n.
 # OUTPUT: Approximation XI to I.
 def composite_simpson_integral(f, a, b, n):
-        XI = 0
+        
         if n%2 == 0:
-
                 h = (b-a)/n
-
                 XI_0 = f(a) + f(b)
                 XI_1 = 0
                 XI_2 = 0
@@ -331,16 +329,19 @@ def composite_simpson_integral(f, a, b, n):
                         else:
                                 XI_1 = XI_1+f(X)
                 XI = h*(XI_0 + 2*XI_2 +4*XI_1)/3
+                return XI
         else:
                 return 'n should be even positive integer'
         
-        return XI
 
 # Composite Trapezoidal Rule (Composite Numerical Integration)
 # To approximate the integral I = integral from a to b f(x)dx:
 # INPUT: Endpoints a, b; even positive integer n.
 # OUTPUT: Approximation XI to I.
 def composite_trapezoid_integral():
+        return 1
+
+def composite_midpoint_integral():
         return 1
 
 # Romberg Integration
@@ -361,8 +362,38 @@ def adaptive_quadrature_integral():
 # To approximate the integral I = integral from a to b integral from c(x) to d(x) f(x,y) dy dx:
 # INPUT: Endpoints a, b; even positive integers m,n.
 # OUTPUT: Approximation J to I.
-def simpson_double_integral():
-        return 1
+def simpson_double_integral(f, a, b, c, d, m, n):
+        
+        if m%2 == 0 and n%2 == 0:
+                h = (b-a)/n
+                J_1 = 0; J_2 = 0; J_3 = 0
+
+                for i in range(n):
+                        x = a + i*h
+                        HX = (d-c)/m
+                        K_1 = f(x,c)+f(x,d)
+                        K_2 = 0; K_3 = 0
+
+                        for j in range(1,m-1):
+                                y = c + j*HX
+                                Q = f(x,y)
+
+                                if j%2==0:
+                                        K_2 = K_2 + Q
+                                else:
+                                        K_3 = K_3 + Q
+                                        
+                        L =  ((K_1+2*K_2+4*K_3)*HX)/3
+                        if i==0 or i==n:
+                                J_1 = J_1 + L
+                        elif i%2==0:
+                                J_2 = J_2 + L
+                        else:
+                                J_3  = J_3 + L
+                J = h*(J_1+2*J_2+4*J_3)/3
+                return J
+        else:
+                return 'n should be even positive integer'
 
 # Gaussian Double Integral
 # To approximate the integral I = integral from a to b integral from c(x) to d(x) f(x,y) dy dx:
