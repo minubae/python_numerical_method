@@ -52,7 +52,7 @@
 
 - Euler's Method (o)
 
-- Runge Kutta Method (Order Four) (progress)
+- Runge Kutta Method (Order Four) (o)
 
 - Runge Kutta Fehlberg Method (progress)
 
