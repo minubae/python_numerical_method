@@ -34,15 +34,17 @@
 
 - Numerical Differentiation (progress)
 
-- Composite Simpson's Rule (progress)
+- Composite Simpson's Rule (o)
 
 - Composite Trapezoidal Rule (progress)
+
+- Composite Midpoint Rule (progress)
 
 - Romberg Integration (progress)
 
 - Adaptive Quadrature Method (progress)
 
-- Simpson's Double Integral (progress)
+- Simpson's Double Integral (o)
 
 - Gaussian Double Integral (progress)
 
