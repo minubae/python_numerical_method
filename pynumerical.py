@@ -388,8 +388,22 @@ def euler_method(f, a, b, N, y0):
 # at (N+1) equally spaced numbers in the interval [a,b]:
 # INPUT: Endpoints a, b; integer N; initial condition ⍺.
 # OUTPUT: Approximation w to y at the (N+1) values of t.
-def runge_kutta():
-        return 1
+f = lambda t, y : y-t**2+1
+def runge_kutta(f,a,b,N,y0):
+        h = (b-a)/N
+        t = a; w = y0
+        print('Initial Value (t0,y0) = ',t,',',w)
+
+        for i in range(1, N):
+                K_1 = h*f(t,w)
+                K_2 = h*f(t+h/2, w+K_1/2)
+                K_3 = h*f(t+h/2, w+K_2/2)
+                K_4 = h*f(t+h, w+K_3)
+
+                t = a + i*h
+                w = w+(K_1+2*K_2+2*K_3+K_4)/6
+        
+        return t, w
 
 # Runge-Kutta-Fehlberg Method
 # To approximate the solution of the initial-value problem y'=f(t,y), a <= t <= b, y(a) = ⍺,
