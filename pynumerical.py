@@ -297,17 +297,30 @@ def hermite_interpolation(x, fx, fp):
 
 ### 4. Numerical Differentiation and Integration
 
-# Numerical Differentiation
-# INPUT: Numbers x0, x1, ... , xn; values f(x0),...,f(xn)
-# OUTPUT: values f'(x0),...,f'(xn)
-def numerical_differentiation(x, fx):
-        fx_prime = list()
-        #TODO
-        # Three-Point Formulas:
-        # Three-Point Endpoint Formula; Three-Point Midpoint Formula
-        # Five-Point Formulas:
-        # Five-Point Midpoint Formula; Five-Point Endpoint Formula
-        return fx_prime
+# Three-Point Midpoint Formula
+# INPUT: f; x0; h
+# OUTPUT: Approximation of Differentiation of f at x0 
+test_f = lambda x: x**2
+def three_midpoint_differentiate(f, x0, h):
+        return (f(x0+h)-f(x0-h))/(2*h)
+
+# Three-Point Endpoint Formula
+# INPUT: f; x0; h
+# OUTPUT: Approximation of Differentiation of f at x0 
+def three_endpoint_differentiate(f, x0, h):
+        return (-3*f(x0)+4*f(x0+h)-f(x0+2*h))/(2*h)
+
+# Five-Point Midpoint Formula
+# INPUT: f; x0; h
+# OUTPUT: Approximation of Differentiation of f at x0 
+def five_midpoint_differentiate(f, x0, h):
+        return (f(x0-2*h) -8*f(x0-h)+8*f(x0+h)-f(x0+2*h))/(12*h)
+
+# Five-Point Endpoint Formula
+# INPUT: f; x0; h
+# OUTPUT: Approximation of Differentiation of f at x0 
+def five_endpoint_differentiate(f, x0, h):
+        return (-25*f(x0)+48*f(x0+h)-36*f(x0+2*h)+16*f(x0+3*h)-3*f(x0+4*h))/(12*h)
 
 # Composite Simpson's Rule (Composite Numerical Integration)
 # To approximate the integral I = integral from a to b f(x)dx:
