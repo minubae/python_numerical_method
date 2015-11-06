@@ -313,8 +313,28 @@ def numerical_differentiation(x, fx):
 # To approximate the integral I = integral from a to b f(x)dx:
 # INPUT: Endpoints a, b; even positive integer n.
 # OUTPUT: Approximation XI to I.
-def composite_simpson_integral():
-        return 1
+def composite_simpson_integral(f, a, b, n):
+        XI = 0
+        if n%2 == 0:
+
+                h = (b-a)/n
+
+                XI_0 = f(a) + f(b)
+                XI_1 = 0
+                XI_2 = 0
+
+                for i in range(n-1):
+                        X = a + i*h
+
+                        if i%2==0:
+                                XI_2 = XI_2+f(X)
+                        else:
+                                XI_1 = XI_1+f(X)
+                XI = h*(XI_0 + 2*XI_2 +4*XI_1)/3
+        else:
+                return 'n should be even positive integer'
+        
+        return XI
 
 # Composite Trapezoidal Rule (Composite Numerical Integration)
 # To approximate the integral I = integral from a to b f(x)dx:
