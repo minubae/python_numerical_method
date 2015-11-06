@@ -32,7 +32,13 @@
 
 ### 4. Numerical Differentiation and Integration
 
-- Numerical Differentiation (progress)
+- Three-Point Midpoint Formula (o)
+
+- Three-Point Endpoint Formula (o)
+
+- Five-Point Midpoint Formula (o)
+
+- Five-Point Endpoint Formula (o)
 
 - Composite Simpson's Rule (o)
 
