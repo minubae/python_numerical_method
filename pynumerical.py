@@ -340,8 +340,8 @@ def composite_simpson_integral(f, a, b, n):
                                 XI_2 = XI_2+f(X)
                         else:
                                 XI_1 = XI_1+f(X)
-                XI = h*(XI_0 + 2*XI_2 +4*XI_1)/3
-                return XI
+                XI = (XI_0 + 2*XI_2 +4*XI_1)
+                return XI * (h / 3)
         else:
                 return 'n should be even positive integer'
         
@@ -356,7 +356,7 @@ def composite_trapezoid_integral(f, a, b, n):
                 T = f(a) + f(b)
                 for i in range(1, n):
                         T += 2 * f(a + i * h)
-                return T * h / 2
+                return T * (h/2)
         else:
                return 'n should be even positive integer' 
 
