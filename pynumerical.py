@@ -349,7 +349,7 @@ def composite_simpson_integral(f, a, b, n):
 # Composite Trapezoidal Rule (Composite Numerical Integration)
 # To approximate the integral I = integral from a to b f(x)dx:
 # INPUT: Endpoints a, b; even positive integer n.
-# OUTPUT: Approximation XI to I.
+# OUTPUT: Approximation Ti to i.
 def composite_trapezoid_integral(f, a, b, n):
         if n%2 == 0:
                 h = (b-a)/n
