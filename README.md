@@ -52,7 +52,7 @@
 
 - Simpson's Double Integral (o)
 
-- Gaussian Double Integral (progress)
+- Gaussian Double Integral (o) --> needs to test
 
 - Gaussian Triple Integral (progress)
 
