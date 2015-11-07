@@ -350,10 +350,17 @@ def composite_simpson_integral(f, a, b, n):
 # To approximate the integral I = integral from a to b f(x)dx:
 # INPUT: Endpoints a, b; even positive integer n.
 # OUTPUT: Approximation XI to I.
-def composite_trapezoid_integral():
-        return 1
+def composite_trapezoid_integral(f, a, b, n):
+        if n%2 == 0:
+                h = (b-a)/n
+                T = f(a) + f(b)
+                for i in range(1, n):
+                        T += 2 * f(a + i * h)
+                return T * h / 2
+        else:
+               return 'n should be even positive integer' 
 
-def composite_midpoint_integral():
+def composite_midpoint_integral(f, a, b, n):
         return 1
 
 # Romberg Integration
