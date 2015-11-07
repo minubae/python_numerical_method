@@ -75,3 +75,23 @@
 - Trapezoidal with Newton Iteration
 
 ### 6. Direct Methods for Solving Linear Systems
+
+- Gaussian Elimination with Backward Substitution
+
+- Gaussian Elimination with Partial Pivoting
+
+- Gaussian Elimination with Scaled Partial Pivoting
+
+- LU Factorization
+
+- LDL^t Factorization
+
+- Crout Factorization for Tridiagonal Linear Systems
+
+
+
+
+
+
+
+
