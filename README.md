@@ -42,7 +42,7 @@
 
 - Composite Simpson's Rule (o)
 
-- Composite Trapezoidal Rule (progress)
+- Composite Trapezoidal Rule (o)
 
 - Composite Midpoint Rule (progress)
 
