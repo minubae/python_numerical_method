@@ -300,7 +300,6 @@ def hermite_interpolation(x, fx, fp):
 # Three-Point Midpoint Formula
 # INPUT: f; x0; h
 # OUTPUT: Approximation of Differentiation of f at x0 
-test_f = lambda x: x**2
 def three_midpoint_differentiate(f, x0, h):
         return (f(x0+h)-f(x0-h))/(2*h)
 
@@ -361,8 +360,21 @@ def composite_midpoint_integral():
 # To approximate the integral I = integral from a to b f(x)dx, select an integer n > 0.
 # INPUT: Endpoints a, b; integer n.
 # OUTPUT: An array R (Compare R by rows; only teh last two rows are saved in storage).
-def romberg_integration():
-        return 1
+test_f = lambda x: x**2
+def romberg_integration(f, a, b, n):
+        
+        h = b - a
+        R = [ [ 0 for i in range(n) ] for j in range(n) ]
+        
+        R[0][0] = (h/2)*(f(a)+f(b))
+
+        return R
+
+def summation(f, x, n):
+        temp_sum = 0        
+        for i in range(n):
+                temp_sum += f(x)
+        return temp_sum
 
 # Adaptive Quadrature
 # To approximate the integral I = integral from a to b f(x)dx to within a given tolerance:
