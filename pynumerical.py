@@ -352,10 +352,12 @@ def composite_simpson_integral(f, a, b, n):
 # OUTPUT: Approximation Ti to i.
 def composite_trapezoid_integral(f, a, b, n):
         if n%2 == 0:
+                x = a
                 h = (b-a)/n
                 T = f(a) + f(b)
                 for i in range(1, n):
-                        T += 2 * f(a + i * h)
+                        x += h
+                        T += 2 * f(x)
                 return T * (h/2)
         else:
                return 'n should be even positive integer' 
