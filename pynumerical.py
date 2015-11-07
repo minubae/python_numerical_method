@@ -436,6 +436,8 @@ def simpson_double_integral(f, a, b, c, d, m, n):
 # OUTPUT: Approximation J to I.
 def gaussian_double_integral(f, a, b, c, d, m, n):
 
+        #TODO: This needs to be tested.
+        
         h1 = (b-a)/2
         h2 = (b+a)/2
         J = 0
