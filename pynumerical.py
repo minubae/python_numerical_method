@@ -434,8 +434,31 @@ def simpson_double_integral(f, a, b, c, d, m, n):
 # INPUT: Endpoints a, b; even positive integers m,n.
 # (The roots ri,j and coefficients ci,j need to be available for i = max{m,n} and for 1 <= j <= i)
 # OUTPUT: Approximation J to I.
-def gaussian_double_integral():
-        return 1
+def gaussian_double_integral(f, a, b, c, d, m, n):
+
+        h1 = (b-a)/2
+        h2 = (b+a)/2
+        J = 0
+
+        r = [[0 for i in range(n)] for j in range(n)]
+        c = [[0 for i in range(n)] for j in range(n)]
+        
+        for i in range(1, m):
+                x = h1*r[m][i] + h2
+                d1 = d
+                c1 = c
+                k1 = (d1-c1)/2
+                k2 = (d1+c1)/2
+
+                for j in range(1,n):
+                        y = k1*r[n][j]+k2
+                        Q = f(x,y)
+                        JX=JX+c[m][j]*Q
+                        
+                J = J +c[m][i]*k1*JX
+        J = h1*J
+                
+        return J
 
 # Gaussian Triple Integral
 # To approximate
