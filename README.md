@@ -62,7 +62,7 @@
 
 - Runge Kutta Method (Order Four) (o)
 
-- Runge Kutta Fehlberg Method (progress)
+- Runge Kutta Fehlberg Method (o) --> needs to test more to find accurate outputs.
 
 - Adams Fourth Order Predictor Corrector
 
