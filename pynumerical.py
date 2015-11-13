@@ -522,7 +522,19 @@ def runge_kutta(f,a,b,N,y0):
 # minimun step size hmin.
 # OUTPUT: t, w, h where w approximates y(t) and the step size h was used or a message that
 # teh minimum step size was exceeded.
-def runge_kutta_fehlberg():
+def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin ):
+
+        
+
+
+
+
+
+
+
+
+
+        
         return 1
 
 ### 6. Direct Methods for Solving Linear Systems
