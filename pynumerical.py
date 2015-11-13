@@ -522,19 +522,51 @@ def runge_kutta(f,a,b,N,y0):
 # minimun step size hmin.
 # OUTPUT: t, w, h where w approximates y(t) and the step size h was used or a message that
 # teh minimum step size was exceeded.
+# runge_kutta_fehlberg(f,0,2,0.5,0.00001,0.25,0.01)
 def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin ):
 
-        
+        t = a
+        w = y0
+        h = hmax
+        FLAG = 1
 
+        while FLAG ==1:
 
+                K_1 = h*f(t,w)
+                K_2 = h*f(t+h/4, w+K_1/4)
+                K_3 = h*f(t+(3*h)/8, w+(3*K_1)/32+(9*K_2)/32)
+                K_4 = h*f(t+(12*h)/13, w+(1932*K_1)/2197-(7200*K_2)/2197 + (7200*K_3)/2197)
+                K_5 = h*f(t+h, w+(439*K_1)/216 - 8*K_2 + (3680*K_3)/513 - (845*K_4)/4104)
+                K_6 = h*f(t+h/2, w - (8*K_1)/27 + 2*K_2 - (3544*K_3)/2565 + (1859*K_4)/4104 - (11*K_5)/40)
 
+                R = math.fabs(K_1/360 - (128 / 4275)*K_3 - (2197 / 75240)*K_4 + K_5/5 + (2/55)*K_6)/h
 
+                if R <= R:
+                        t = t+h
+                        w = w + (25/216)*K_1 + (1408/2565)*K_3 + (2197/4104)/K_4 - K_5/5
+                        return t, w, h
 
+                q = 0.84*(tol/R)**(1/4)
 
+                if q <= 0.1:
+                        h = 0.1*h
+                elif q >= 4:
+                        h = 4*h
+                else:
+                        h = q*h
+                        
+                if h > hmax:
+                        h = hmax
 
+                if t >= b:
+                        FLAG = 0
+                elif (t+h) > b:
+                        h = b - t
+                elif h < hmin:
+                        FLAG = 0
+                        return 'since minimun h exceeded, procedure completed unsuccessfully.'
+                
 
-
-        
         return 1
 
 ### 6. Direct Methods for Solving Linear Systems
