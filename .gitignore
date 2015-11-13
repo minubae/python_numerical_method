@@ -1,2 +1,7 @@
+
+# Packages
+__pycache__/
+
+
 find -name *.pyc | xargs rm
 *.pyc
