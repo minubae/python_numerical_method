@@ -533,7 +533,7 @@ def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin ):
 
         print('Initial Value (t0,w0) = ',t,',',w)
 
-        while FLAG ==1:
+        while FLAG == 1:
 
                 K_1 = h*f(t,w)
                 K_2 = h*f(t+(1/4)*h, w+(1/4)*K_1)
@@ -543,7 +543,7 @@ def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin ):
                 K_6 = h*f(t+(1/2)*h, w - (8/27)*K_1 + 2*K_2 - (3544/2565)*K_3 + (1859/4104)*K_4 - (11/40)*K_5)
 
                 R = (1/h)*math.fabs((1/360)*K_1 - (128 / 4275)*K_3 - (2197 / 75240)*K_4 + (1/50)*K_5 + (2/55)*K_6)
-                # print('R:',R, 'Tol:',tol)
+                
                 if R <= tol:
                         t = t+h
                         w = w + (25/216)*K_1 + (1408/2565)*K_3 + (2197/4104)/K_4 - (1/5)*K_5
@@ -551,6 +551,7 @@ def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin ):
 
                 q = 0.84*((tol/R)**(1/4))
                 print('q:',q)
+                
                 if q <= 0.1:
                         h = 0.1*h                      
                 elif q >= 4:
@@ -560,7 +561,6 @@ def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin ):
                         
                 if h > hmax:
                         h = hmax
-
                 if t >= b:
                         FLAG = 0
                 elif (t+h) > b:
