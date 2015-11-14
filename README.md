@@ -64,15 +64,12 @@
 
 - Runge Kutta Fehlberg Method (o) --> needs to test more to find accurate outputs.
 
-- Adams Fourth Order Predictor Corrector
+- Adams Fourth Order Predictor Corrector (o)
 
 - Adams Variable Step Size Predictor Corrector
 
-- Extrapolation Method
-
 - Runge Kutta Method for Systems of Differential Equations
 
-- Trapezoidal with Newton Iteration
 
 ### 6. Direct Methods for Solving Linear Systems
 
