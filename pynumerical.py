@@ -584,9 +584,11 @@ def adams_fourth_order_predictor_corrector(f, a, b, N, y0):
         w = [0]*N # w = [0 for i in range(N)]
         t[0] = a # t.insert(0,0)
         w[0] = y0 # w.insert(0,y0)
-        output = dict()
+        output = dict(); key = ''
         
-        print('Initial Value (t0,w0) = ',t[0],',',w[0])
+        # print('Initial Value (t0,w0) = ',t[0],',',w[0])
+        key = format(round(t[0],1))
+        output[key] = w[0]
         
         for i in range(1,4):
                 
