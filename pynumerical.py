@@ -568,7 +568,73 @@ def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin):
                 elif h < hmin:
                         FLAG = 0
                         return 'since minimun h is exceeded, the procedure completed unsuccessfully.'
+
+
+# Adams Fourth Order Predictor Corrector
+# To approximate the solution of the initial-value problem y'=f(t,y), a <= t <= b, y(a) = ⍺,
+# at (N+1) equally spaced numbers in the initial [a,b]
+# INPUT: Endpoints a, b; integer N; initial condition ⍺
+# OUTPUT: Approximation w to y at the (N+1) values of t.
+# Test Command:
+# adams_fourth_order_predictor_corrector(f, 0, 2 , 10, 0.5)
+def adams_fourth_order_predictor_corrector(f, a, b, N, y0):
+
+        h = (b-a)/N
+        t = [0]*N # t = [0 for i in range(N)]
+        w = [0]*N # w = [0 for i in range(N)]
+        t[0] = a # t.insert(0,0)
+        w[0] = y0 # w.insert(0,y0)
+        output = dict()
+        
+        print('Initial Value (t0,w0) = ',t[0],',',w[0])
+        
+        for i in range(1,4):
                 
+                K_1 = h*f(t[i-1], w[i-1])
+                K_2 = h*f(t[i-1]+h/2, w[i-1]+(K_1)/2)
+                K_3 = h*f(t[i-1]+h/2, w[i-1]+(K_2)/2)
+                K_4 = h*f(t[i-1]+h, w[i-1]+K_3)
+
+                w[i] = w[i-1] + (K_1 + 2*K_2 + 2*K_3 + K_4)/6
+                t[i] = a + i*h
+
+                key = format(round(t[i],1))
+                output[key] = w[i]
+                # print('t:', t[i], 'w:',w[i])
+
+        for i in range(4,N+1):
+                temp_t = a + i*h
+                temp_w = w[3] +(h/24)*(55*f(t[3], w[3]) - 59*f(t[2], w[2]) + 37*f(t[1], w[1]) - 9*f(t[0], w[0]))
+                temp_w = w[3] +(h/24)*(9*f(temp_t, temp_w) + 19*f(t[3], w[3]) - 5*f(t[2], w[2]) + f(t[1], w[1]))
+
+                key = format(round(temp_t,1))
+                output[key] = temp_w
+                # print('t:', temp_t, 'w:',temp_w)
+
+                for j in range(3):
+                        t[j] = t[j+1]
+                        w[j] = w[j+1]
+                t[3] = temp_t
+                w[3] = temp_w
+
+        return sorted(output.items())
+
+# Adams Variable Step Size Predictor Corrector
+
+# Runge Kutta Method for Systems of Differential Equations
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### 6. Direct Methods for Solving Linear Systems
 
 
