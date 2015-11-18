@@ -219,7 +219,7 @@ def false_position(p0, p1, f, tol, N):
 # at the number x for the function f
 # INPUT: Numbers x, x0, x1,...,xn; values f(x0), f(x1),...,f(xn) as the first column Q0,0, Q1,0,...,Qn,0 of Q.
 # OUTPUT: The table Q with P(x) = Qn,n.
-def neville_method(x0, y, fx):
+def neville_method(x0, x, fx):
 
         n = len(x)        
         Q = [[0 for i in range(n)] for j in range(n)]
