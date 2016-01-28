@@ -1,5 +1,9 @@
 # Methods of Numerical Analysis - Ver 0.1 (python)
-## <p>Link to <a href="" target="_blank"><b>Documentation of Methods of Numerical Analysis</b></a></p>
+<p>Link to
+<a href="" target="_blank">
+<b>Documentation of Methods of Numerical Analysis</b>
+</a>
+</p>
 
 ### 1. Round-Off Error and Computer Arithmetic
 
