@@ -1,8 +1,6 @@
 # Methods of Numerical Analysis - Ver 0.1 (python)
 <p>Link to
-<a href="" target="_blank">
-<b>Documentation of Methods of Numerical Analysis</b>
-</a>
+<a href="http://www.minubae.com/courseworks-02/courseworks-02/methods-numerical-analysis/round-off-error" target="_blank"><b>Documentation of Methods of Numerical Analysis</b></a>
 </p>
 
 ### 1. Round-Off Error and Computer Arithmetic
