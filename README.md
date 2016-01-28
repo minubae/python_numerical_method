@@ -1,6 +1,6 @@
 # Numerical Method Module Ver 0.1 (python)
 
-### 1. Mathematical Preliminaries and Error Analysis
+### 1. Round-Off Error and Computer Arithmetic
 
 - Absolute Value (o)
 
@@ -20,7 +20,7 @@
 
 - The Secant Method (o)
 
-- The Method of False Postion (o)
+- The Method of False Position (o)
 
 ### 3. Interpolation and Polynomial Approximation
 
@@ -84,11 +84,3 @@
 - LDL^t Factorization
 
 - Crout Factorization for Tridiagonal Linear Systems
-
-
-
-
-
-
-
-
