@@ -1,5 +1,5 @@
 # Numerical Method (Analysis) Module - pynumerical.py
-# Date: Oct/21/2015, Wed - 
+# Date: Oct/21/2015, Wed - Current
 # Version: ver 0.1
 # Author: Minwoo Bae
 # Contact: minubae.nyc@gmail.com
