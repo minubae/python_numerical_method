@@ -5,7 +5,7 @@
 # Contact: minubae.nyc@gmail.com
 
 import math
-from sympy import *
+from scipy.misc import derivative as df
 
 ## A Function for the purpose of testing
 fx = lambda x: 2**x - 3
@@ -38,7 +38,7 @@ def relative_error(p, a_p):
                 print('error: absolute_value must not be equal to ',absolute_value(p))
 
 ### 2. Solution of Equations in One Variable
-                
+
 ## The Bisection Method (Binary Search)
 # The Bisection, or Binary-search, Method is based on the Intermediate Value Theorem.
 # Suppose f is a continuous function defined on the interval [a,b], with f(a) and f(b)
@@ -66,24 +66,24 @@ def bisection_method(fx, a, b, tol, N):
                 FP = fx(p)
 
                 print(i,': ', 'p:', p, '; f(p):', FP)
-                
+
                 if FP == 0 or (b-a)/2 < tol:
                     return p; break
                 i+=1
-                
+
                 if FA*FP > 0:
                         a = p
                 else:
                         b = p
         except:
             return 'The procedure was unsuccessful.'
-                
+
 # def bisection_method(fx, a, b, num):
 #         i = 0
 #         pivot = 0
 #         isNegative = lambda fx, a, b: True if fx(a) * fx(b) < 0 else False
 #         findPivot = lambda a, b: (a+b)/2
-        
+
 #         if isNegative(fx, a, b):
 #                 for i in range(num):
 #                         pivot = findPivot(a, b)
@@ -99,10 +99,10 @@ def bisection_method(fx, a, b, tol, N):
 # Let g is continuous on [a,b] be such that g(x) exists on [a,b], for all x in [a,b].
 # Suppose, in addition, that g' exists on (a,b) and that a constant 0 < k < 1 exists with
 # |g'(x)| <= k, for all x in (a,b).
-# Then, for any number p0 in [a,b], the sequence defiend by p_n = g(p_n-1), n >= 1, 
+# Then, for any number p0 in [a,b], the sequence defiend by p_n = g(p_n-1), n >= 1,
 # converges to the unique fixed point p in [a,b].
 # INPUT: Initial approximation p0; tolerance TOL; maximum number of iteration N.
-# OUTPUT: Approximate solution p or message of failure.   
+# OUTPUT: Approximate solution p or message of failure.
 def fixed_point(p0, g, tol, N):
     i = 1
     try:
@@ -130,19 +130,18 @@ x = symbols('x')
 f = lambda x: math.cos(x)-x
 
 def newton_method(p0, f, tol, N):
-        i = 1
-        try:
-                while i <= N:
-                        # TODO:
-                        # diff(f(p0), x) needs to be fixed.
-                        p = p0 - f(p0)/diff(f(p0),x)
+    i = 1
+    try:
+        while i <= N:
+            p = p0 - f(p0)/df(f, p0)
+            if math.fabs(p-p0) < tol:
+                return p; break
+            i+=1
+            p0 = p
+    except:
+        return 'The procedure was unsuccessful'
 
-                        if math.fabs(p-p0) < tol:
-                                return p; break
-                        i+=1
-                        p0 = p
-        except:
-                return 'The procedure was unsuccessful'
+# print('Newton Method :' , newton_method(4, f, 10**-5, 10))
 
 ## The Secant Method
 # Newton's method is an extremly powerful technique, but it has a major weakness: the need to know
@@ -155,7 +154,7 @@ def secant_method(p0,p1,f,tol,N):
         i = 2
         q0 = f(p0)
         q1 = f(p1)
-        
+
         try:
             while i <= N:
                 p = p1 - q1*(p1-p0) / (q1-q0)
@@ -164,7 +163,7 @@ def secant_method(p0,p1,f,tol,N):
                 if math.fabs(p-p1)< tol:
                     return p; break
                 i+=1
-                        
+
                 p0 = p1
                 q0 = q1
                 p1 = p
@@ -173,7 +172,7 @@ def secant_method(p0,p1,f,tol,N):
         except:
                 return 'The procedure was unsuccessful'
 
-                        
+
 ## The Method of False Postion
 # The Method of False Position (also called Regula Falsi) generates approximations in the same manner as the Secant
 # method, but it includes a test to ensure that the root is always bracketed between successive iterations.
@@ -190,7 +189,7 @@ def false_position(p0, p1, f, tol, N):
                 while i <= N:
                         p = p1 - q1*(p1-p0)/(q1 - q0)
                         print('i:',i, 'p:',p)
-                        
+
                         if math.fabs(p - p1) < tol:
                                 return p; break
                         i+=1
@@ -205,7 +204,7 @@ def false_position(p0, p1, f, tol, N):
                 return 'The procedure was unsuccessful'
 
 ### 3. Interpolation and Polynomial Approximation
-        
+
 ## Neville's Iterated Interpolation
 # Theorem 3.5: Let f be defined at x0, x1,...,xk and let xj and xi be two distinct numbers in this set.
 # Then P(x) = (x-xj)P0,1,...,j-1,j+1,...,k(x) - (x-xi)P0,1,...,j-1,j+1,...,k(x) / (xi-xj)
@@ -221,12 +220,12 @@ def false_position(p0, p1, f, tol, N):
 # OUTPUT: The table Q with P(x) = Qn,n.
 def neville_method(x0, x, fx):
 
-        n = len(x)        
+        n = len(x)
         Q = [[0 for i in range(n)] for j in range(n)]
 
         for i in range(n):
                 Q[i][0] = fx[i]
-                
+
         for i in range(1,n):
                 for j in range(1, i+1):
                         Q[i][j] = ((x0-x[i-j])*Q[i][j-1] - (x0 -x[i])*Q[i-1][j-1]) / (x[i] - x[i-j])
@@ -253,14 +252,14 @@ def divided_differences(x, fx):
         # fx = [0.7651977, 0.6200860, 0.4554022, 0.2818186, 0.1103623]
         n = len(x)
         F = [ [ 0 for i in range(n) ] for j in range(n) ]
-        
+
         for i in range(n):
                 F[i][0] = fx[i]
-        
+
         for i in range(1, n):
                 for j in range(1, i+1):
                         F[i][j] = (F[i][j-1] - F[i-1][j-1]) / (x[i] - x[i-j])
-                        
+
         return F
 
 ## Hermote Interpolation
@@ -274,7 +273,7 @@ def hermite_interpolation(x, fx, fp):
         #x = [1.3, 1.6, 1.9]
         #fx = [0.6200860, 0.4554022, 0.2818186]
         #fp = [-0.5220232, -0.5698959, -0.5811571]
-        
+
         n = len(x)
         z = [0 for i in range(2*n)]
         Q = [ [ 0 for i in range(2*n) ] for j in range(2*n) ]
@@ -292,32 +291,32 @@ def hermite_interpolation(x, fx, fp):
         for i in range(2, 2*n):
                 for j in range(2, i+1):
                         Q[i][j] = (Q[i][j-1] - Q[i-1][j-1]) / (z[i] - z[i-j])
-                        
+
         return Q
 
 ### 4. Numerical Differentiation and Integration
 
 # Three-Point Midpoint Formula
 # INPUT: f; x0; h
-# OUTPUT: Approximation of Differentiation of f at x0 
+# OUTPUT: Approximation of Differentiation of f at x0
 def three_midpoint_differentiate(f, x0, h):
         return (f(x0+h)-f(x0-h))/(2*h)
 
 # Three-Point Endpoint Formula
 # INPUT: f; x0; h
-# OUTPUT: Approximation of Differentiation of f at x0 
+# OUTPUT: Approximation of Differentiation of f at x0
 def three_endpoint_differentiate(f, x0, h):
         return (-3*f(x0)+4*f(x0+h)-f(x0+2*h))/(2*h)
 
 # Five-Point Midpoint Formula
 # INPUT: f; x0; h
-# OUTPUT: Approximation of Differentiation of f at x0 
+# OUTPUT: Approximation of Differentiation of f at x0
 def five_midpoint_differentiate(f, x0, h):
         return (f(x0-2*h) -8*f(x0-h)+8*f(x0+h)-f(x0+2*h))/(12*h)
 
 # Five-Point Endpoint Formula
 # INPUT: f; x0; h
-# OUTPUT: Approximation of Differentiation of f at x0 
+# OUTPUT: Approximation of Differentiation of f at x0
 def five_endpoint_differentiate(f, x0, h):
         return (-25*f(x0)+48*f(x0+h)-36*f(x0+2*h)+16*f(x0+3*h)-3*f(x0+4*h))/(12*h)
 
@@ -326,7 +325,7 @@ def five_endpoint_differentiate(f, x0, h):
 # INPUT: Endpoints a, b; even positive integer n.
 # OUTPUT: Approximation XI to I.
 def composite_simpson_integral(f, a, b, n):
-        
+
         if n%2 == 0:
                 h = (b-a)/n
                 XI_0 = f(a) + f(b)
@@ -344,7 +343,7 @@ def composite_simpson_integral(f, a, b, n):
                 return XI * (h / 3)
         else:
                 return 'n should be even positive integer'
-        
+
 
 # Composite Trapezoidal Rule (Composite Numerical Integration)
 # To approximate the integral I = integral from a to b f(x)dx:
@@ -360,7 +359,7 @@ def composite_trapezoid_integral(f, a, b, n):
                         T += 2 * f(x)
                 return T * (h/2)
         else:
-               return 'n should be even positive integer' 
+               return 'n should be even positive integer'
 
 def composite_midpoint_integral(f, a, b, n):
         return 1
@@ -371,16 +370,16 @@ def composite_midpoint_integral(f, a, b, n):
 # OUTPUT: An array R (Compare R by rows; only teh last two rows are saved in storage).
 test_f = lambda x: x**2
 def romberg_integration(f, a, b, n):
-        
+
         h = b - a
         R = [ [ 0 for i in range(n) ] for j in range(n) ]
-        
+
         R[0][0] = (h/2)*(f(a)+f(b))
 
         return R
 
 def summation(f, x, n):
-        temp_sum = 0        
+        temp_sum = 0
         for i in range(n):
                 temp_sum += f(x)
         return temp_sum
@@ -397,7 +396,7 @@ def adaptive_quadrature_integral():
 # INPUT: Endpoints a, b; even positive integers m,n.
 # OUTPUT: Approximation J to I.
 def simpson_double_integral(f, a, b, c, d, m, n):
-        
+
         if m%2 == 0 and n%2 == 0:
                 h = (b-a)/n
                 J_1 = 0; J_2 = 0; J_3 = 0
@@ -416,7 +415,7 @@ def simpson_double_integral(f, a, b, c, d, m, n):
                                         K_2 = K_2 + Q
                                 else:
                                         K_3 = K_3 + Q
-                                        
+
                         L =  ((K_1+2*K_2+4*K_3)*HX)/3
                         if i==0 or i==n:
                                 J_1 = J_1 + L
@@ -437,14 +436,14 @@ def simpson_double_integral(f, a, b, c, d, m, n):
 def gaussian_double_integral(f, a, b, c, d, m, n):
 
         #TODO: This needs to be tested.
-        
+
         h1 = (b-a)/2
         h2 = (b+a)/2
         J = 0
 
         r = [[0 for i in range(n)] for j in range(n)]
         c = [[0 for i in range(n)] for j in range(n)]
-        
+
         for i in range(1, m):
                 x = h1*r[m][i] + h2
                 d1 = d
@@ -456,10 +455,10 @@ def gaussian_double_integral(f, a, b, c, d, m, n):
                         y = k1*r[n][j]+k2
                         Q = f(x,y)
                         JX=JX+c[m][j]*Q
-                        
+
                 J = J +c[m][i]*k1*JX
         J = h1*J
-                
+
         return J
 
 # Gaussian Triple Integral
@@ -490,7 +489,7 @@ def euler_method(f, a, b, N, y0):
         w = w+h*f(t,w)
         t = a + i*h
         print('t_'+str(i)+': ', t, 'w_'+str(i)+': ', w)
-        
+
     return w
 
 # Runge-Kutta (Order Four)
@@ -525,7 +524,7 @@ def runge_kutta(f,a,b,N,y0):
 # Test Command: runge_kutta_fehlberg(f, 0, 2 , 0.5 , 0.00001, 0.25, 0.01)
 def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin):
 
-        # TODO: Needs to test to find more accurate outputs 
+        # TODO: Needs to test to find more accurate outputs
         t = a
         w = y0
         h = hmax
@@ -543,7 +542,7 @@ def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin):
                 K_6 = h*f(t+(1/2)*h, w - (8/27)*K_1 + 2*K_2 - (3544/2565)*K_3 + (1859/4104)*K_4 - (11/40)*K_5)
 
                 R = (1/h)*math.fabs((1/360)*K_1 - (128/4275)*K_3 - (2197/75240)*K_4 + (1/50)*K_5 + (2/55)*K_6)
-                
+
                 if R <= tol:
                         t = t+h
                         w = w + (25/216)*K_1 + (1408/2565)*K_3 + (2197/4104)/K_4 - (1/5)*K_5
@@ -551,14 +550,14 @@ def runge_kutta_fehlberg(f, a, b, y0, tol, hmax, hmin):
 
                 q = 0.84*(tol/R)**(1/4)
                 print('q:',q)
-                
+
                 if q <= 0.1:
-                        h = 0.1*h                      
+                        h = 0.1*h
                 elif q >= 4:
                         h = 4*h
                 else:
                         h = q*h
-                        
+
                 if h > hmax:
                         h = hmax
                 if t >= b:
@@ -585,13 +584,13 @@ def adams_fourth_order_predictor_corrector(f, a, b, N, y0):
         t[0] = a # t.insert(0,0)
         w[0] = y0 # w.insert(0,y0)
         output = dict(); key = ''
-        
+
         # print('Initial Value (t0,w0) = ',t[0],',',w[0])
         key = format(round(t[0],1))
         output[key] = w[0]
-        
+
         for i in range(1,4):
-                
+
                 K_1 = h*f(t[i-1], w[i-1])
                 K_2 = h*f(t[i-1]+h/2, w[i-1]+(K_1)/2)
                 K_3 = h*f(t[i-1]+h/2, w[i-1]+(K_2)/2)
@@ -638,13 +637,3 @@ def adams_fourth_order_predictor_corrector(f, a, b, N, y0):
 
 
 ### 6. Direct Methods for Solving Linear Systems
-
-
-
-
-
-
-
-
-
-    
