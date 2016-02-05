@@ -5,7 +5,6 @@
 # Contact: minubae.nyc@gmail.com
 
 import math
-from scipy.misc import derivative as df
 
 ## A Function for the purpose of testing
 fx = lambda x: 2**x - 3
@@ -128,6 +127,7 @@ def fixed_point(p0, g, tol, N):
 # OUTPUT: Approximation solution p or message of failure.
 x = symbols('x')
 f = lambda x: math.cos(x)-x
+from scipy.misc import derivative as df
 
 def newton_method(p0, f, tol, N):
     i = 1
