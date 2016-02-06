@@ -1,6 +1,6 @@
 # Methods of Numerical Analysis - Ver 0.1 (python)
 <p>Link to
-<a href="http://www.minubae.com/courseworks-01/methods-numerical-analysis/computer-arithmetic" target="_blank"><b>Documentation of Methods of Numerical Analysis</b></a>
+<a href="http://www.minubae.com/courseworks-01/methods-numerical-analysis/computer-arithmetic" target="_blank"><b>Methods of Numerical Analysis</b></a>
 </p>
 
 ### 1. Round-Off Error and Computer Arithmetic
